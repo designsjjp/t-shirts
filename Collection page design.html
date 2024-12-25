@@ -1,0 +1,29 @@
+<div class="collection-page">
+    <div class="collection-header">
+      <h1>{{ collection.title }}</h1>
+      <p>{{ collection.description }}</p>
+    </div>
+    <div class="collection-filters">
+      <label for="sort-by">Sort By:</label>
+      <select id="sort-by">
+        <option value="best-selling">Best Selling</option>
+        <option value="price-low-high">Price: Low to High</option>
+        <option value="price-high-low">Price: High to Low</option>
+        <option value="newest">Newest</option>
+      </select>
+    </div>
+    <div class="collection-grid">
+      {% for product in collection.products %}
+      <div class="product-card" data-price="{{ product.price }}">
+        <a href="{{ product.url }}">
+          <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" />
+          <h2>{{ product.title }}</h2>
+          <p>{{ product.price | money }}</p>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <script src="/assets/collection.js"></script>
+  <link rel="stylesheet" href="/assets/collection.css">
+  
